@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manya Gupta | Marketing & Communications | B2B Brand & Strategic Communications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #070714;
+            --secondary: #0c0c1f;
+            --accent: #c0392b;
+            --accent-light: #e74c3c;
+            --gold: #d4a017;
+            --text: #f1f1f1;
+            --text-muted: #95a5a6;
+            --card-bg: rgba(255,255,255,0.025);
+            --card-border: rgba(255,255,255,0.06);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.65;
+        }
+        .bg-animation {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
+        }
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(192,57,43,0.08) 0%, transparent 70%);
+            top: -300px; right: -200px;
+            animation: float 25s infinite ease-in-out;
+        }
+        .bg-animation::after {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212,160,23,0.06) 0%, transparent 70%);
+            bottom: -200px; left: -200px;
+            animation: float 30s infinite ease-in-out reverse;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            33% { transform: translate(30px,-30px) scale(1.1); }
+            66% { transform: translate(-20px,20px) scale(0.9); }
+        }
+        nav {
+            position: fixed; top: 0; width: 100%;
+            padding: 18px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
+            background: rgba(7,7,20,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+        nav.scrolled { padding: 14px 5%; box-shadow: 0 5px 30px rgba(0,0,0,0.4); }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem; font-weight: 700; color: var(--text); text-decoration: none;
+        }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            color: var(--text-muted); text-decoration: none; font-weight: 500;
+            font-size: 0.9rem; position: relative; transition: color 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0;
+            width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--text); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; cursor: pointer; }
+
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding: 130px 5% 80px; position: relative;
+        }
+        .hero-container {
+            max-width: 1300px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px;
+            align-items: center; width: 100%;
+        }
+        .hero-content { animation: fadeInUp 1s ease; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 8px 20px;
+            background: rgba(192,57,43,0.12);
+            border: 1px solid rgba(192,57,43,0.25);
+            border-radius: 50px;
+            color: var(--accent-light);
+            font-size: 0.8rem; font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+        .hero-badge i { font-size: 0.7rem; }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.4rem; line-height: 1.12; margin-bottom: 22px;
+        }
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: 1.15rem; color: var(--text-muted);
+            margin-bottom: 28px; font-weight: 300; line-height: 1.6;
+        }
+        .hero-story {
+            font-size: 1rem; color: var(--text-muted);
+            margin-bottom: 35px; line-height: 1.85;
+            border-left: 3px solid var(--accent); padding-left: 24px;
+        }
+        .hero-cta { display: flex; gap: 18px; flex-wrap: wrap; }
+        .btn {
+            padding: 13px 32px; border-radius: 50px; font-weight: 600;
+            text-decoration: none; transition: all 0.3s ease;
+            display: inline-flex; align-items: center; gap: 10px; font-size: 0.95rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white; box-shadow: 0 10px 30px rgba(192,57,43,0.25);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(192,57,43,0.35); }
+        .btn-secondary {
+            background: transparent; color: var(--text);
+            border: 1.5px solid var(--card-border);
+        }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+        .hero-visual { animation: fadeInUp 1s ease 0.3s both; }
+        .pillar-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+        }
+        .pillar-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px; padding: 28px 22px;
+            transition: all 0.35s ease; backdrop-filter: blur(8px);
+        }
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(192,57,43,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        }
+        .pillar-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            background: rgba(192,57,43,0.12);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent); font-size: 1.1rem; margin-bottom: 14px;
+        }
+        .pillar-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+        .pillar-desc { color: var(--text-muted); font-size: 0.82rem; line-height: 1.55; }
+
+        section { padding: 100px 5%; position: relative; }
+        .section-header { text-align: center; margin-bottom: 55px; }
+        .section-tag {
+            display: inline-block; padding: 6px 16px;
+            background: rgba(192,57,43,0.1); border-radius: 50px;
+            color: var(--accent-light); font-size: 0.75rem;
+            font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif; font-size: 2.6rem; margin-bottom: 14px;
+        }
+        .section-header p { color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin: 0 auto; line-height: 1.7; }
+
+        .approach { background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%); }
+        .approach-grid {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start;
+        }
+        .approach-content h3 {
+            font-family: 'Playfair Display', serif; font-size: 1.9rem; margin-bottom: 18px; line-height: 1.25;
+        }
+        .approach-content p { color: var(--text-muted); margin-bottom: 18px; font-size: 1rem; line-height: 1.8; }
+        .approach-list { list-style: none; margin-top: 25px; }
+        .approach-list li {
+            padding: 12px 0; padding-left: 32px; position: relative;
+            color: var(--text-muted); font-size: 0.95rem; border-bottom: 1px solid var(--card-border);
+        }
+        .approach-list li:last-child { border-bottom: none; }
+        .approach-list li::before {
+            content: '✓'; position: absolute; left: 0; top: 12px;
+            color: var(--accent); font-weight: bold; font-size: 1rem;
+        }
+        .approach-visual {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 20px; padding: 35px;
+        }
+        .approach-visual h4 {
+            font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 20px;
+            color: var(--text);
+        }
+        .competency-row {
+            display: flex; align-items: center; gap: 15px;
+            margin-bottom: 18px;
+        }
+        .competency-bar-bg {
+            flex: 1; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden;
+        }
+        .competency-bar-fill {
+            height: 100%; border-radius: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+        }
+        .competency-label { font-size: 0.85rem; color: var(--text-muted); min-width: 140px; }
+        .competency-pct { font-size: 0.8rem; color: var(--gold); font-weight: 600; min-width: 40px; text-align: right; }
+
+        .about { background: var(--secondary); }
+        .about-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+        }
+        .about-content h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 18px; }
+        .about-content p { color: var(--text-muted); margin-bottom: 18px; font-size: 1rem; line-height: 1.8; }
+        .about-quote {
+            background: var(--card-bg); border-left: 3px solid var(--accent);
+            padding: 22px 26px; border-radius: 0 14px 14px 0;
+            margin: 25px 0; font-style: italic; color: var(--text); font-size: 1rem; line-height: 1.7;
+        }
+        .skills-cloud { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+        .skill-tag {
+            padding: 9px 18px; background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 50px; font-size: 0.85rem; color: var(--text); transition: all 0.3s ease;
+        }
+        .skill-tag:hover { background: rgba(192,57,43,0.12); border-color: var(--accent); transform: translateY(-2px); }
+        .skill-tag.pillar {
+            background: rgba(192,57,43,0.15); border-color: rgba(192,57,43,0.3);
+            color: var(--accent-light); font-weight: 600;
+        }
+
+        .experience-timeline { position: relative; padding-left: 28px; }
+        .experience-timeline::before {
+            content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 2px;
+            background: linear-gradient(180deg, var(--accent), var(--gold));
+        }
+        .timeline-item { position: relative; margin-bottom: 35px; padding-left: 26px; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -34px; top: 5px;
+            width: 10px; height: 10px; background: var(--accent); border-radius: 50%;
+            border: 3px solid var(--secondary);
+        }
+        .timeline-date { color: var(--accent-light); font-weight: 600; font-size: 0.85rem; margin-bottom: 6px; }
+        .timeline-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+        .timeline-company { color: var(--text-muted); font-size: 0.9rem; }
+
+        .experience { background: var(--primary); }
+        .experience-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px;
+        }
+        .exp-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 18px; padding: 32px; transition: all 0.4s ease;
+            position: relative; overflow: hidden;
+        }
+        .exp-card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+        }
+        .exp-card:hover::before { transform: scaleX(1); }
+        .exp-card:hover {
+            transform: translateY(-6px); border-color: rgba(192,57,43,0.15);
+            box-shadow: 0 22px 45px rgba(0,0,0,0.3);
+        }
+        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
+        .exp-company { font-size: 1.2rem; font-weight: 700; color: var(--text); }
+        .exp-date {
+            color: var(--accent-light); font-size: 0.8rem; font-weight: 600;
+            padding: 4px 12px; background: rgba(192,57,43,0.1); border-radius: 20px; white-space: nowrap;
+        }
+        .exp-role { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px; font-weight: 500; }
+        .exp-highlights { list-style: none; }
+        .exp-highlights li {
+            padding: 7px 0; color: var(--text-muted); font-size: 0.9rem;
+            position: relative; padding-left: 22px; line-height: 1.6;
+        }
+        .exp-highlights li::before {
+            content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: bold;
+        }
+        .exp-metric {
+            display: inline-block; margin-top: 14px; padding: 7px 14px;
+            background: rgba(212,160,23,0.08); border: 1px solid rgba(212,160,23,0.2);
+            border-radius: 8px; color: var(--gold); font-weight: 600; font-size: 0.85rem;
+        }
+
+        /* ===== PROJECTS SECTION ===== */
+        .projects { background: linear-gradient(180deg, var(--secondary) 0%, var(--primary) 100%); }
+        .projects-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px;
+        }
+        .project-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 18px; overflow: hidden; transition: all 0.4s ease;
+            cursor: pointer; position: relative;
+        }
+        .project-card:hover {
+            transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+            border-color: rgba(192,57,43,0.25);
+        }
+        .project-card .project-image {
+            height: 200px; background: linear-gradient(135deg, #1a1a3e, #0f0f2d);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.8rem; position: relative; overflow: hidden;
+        }
+        .project-card .project-image::after {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(7,7,20,0.9) 100%);
+        }
+        .project-card .project-image .play-btn {
+            position: absolute; z-index: 2;
+            width: 56px; height: 56px; border-radius: 50%;
+            background: rgba(192,57,43,0.9); border: 2px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.2rem;
+            box-shadow: 0 8px 25px rgba(192,57,43,0.4);
+            transition: all 0.3s ease;
+        }
+        .project-card:hover .project-image .play-btn {
+            transform: scale(1.1); background: var(--accent);
+        }
+        .project-card .project-content { padding: 26px; }
+        .project-tag {
+            display: inline-block; padding: 4px 12px;
+            background: rgba(192,57,43,0.1); border-radius: 20px;
+            color: var(--accent-light); font-size: 0.75rem; font-weight: 600; margin-bottom: 12px;
+        }
+        .project-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+        .project-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 18px; }
+        .project-meta {
+            display: flex; align-items: center; gap: 15px;
+            color: var(--text-muted); font-size: 0.8rem;
+        }
+        .project-meta span { display: flex; align-items: center; gap: 5px; }
+        .project-meta i { color: var(--accent); font-size: 0.85rem; }
+
+        /* ===== PDF MODAL ===== */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 9999;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+        }
+        .pdf-modal.active {
+            display: flex !important;
+            flex-direction: column;
+        }
+        .pdf-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: var(--secondary);
+            border-bottom: 1px solid var(--card-border);
+            flex-shrink: 0;
+        }
+        .pdf-header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        .pdf-header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .pdf-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .pdf-body iframe {
+            width: 100%;
+            height: 100%;
+            max-width: 1100px;
+            background: var(--secondary);
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .pdf-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px 24px;
+            background: var(--secondary);
+            border-top: 1px solid var(--card-border);
+            flex-shrink: 0;
+        }
+        .ppt-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+        .ppt-btn:hover {
+            background: rgba(192,57,43,0.2);
+            border-color: var(--accent);
+        }
+
+        .achievements { background: var(--primary); }
+        .achievements-grid {
+            max-width: 1000px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px;
+        }
+        .achievement-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 14px; padding: 28px; text-align: center; transition: all 0.3s ease;
+        }
+        .achievement-card:hover { transform: scale(1.04); border-color: var(--accent); }
+        .achievement-icon { font-size: 2.2rem; color: var(--accent); margin-bottom: 12px; }
+        .achievement-title { font-weight: 600; margin-bottom: 6px; font-size: 1rem; }
+        .achievement-detail { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; }
+
+        .contact { background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%); text-align: center; }
+        .contact-content { max-width: 680px; margin: 0 auto; }
+        .contact h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 18px; }
+        .contact p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 35px; line-height: 1.7; }
+        .contact-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 35px; }
+        .contact-link {
+            display: flex; align-items: center; gap: 10px;
+            padding: 14px 28px; background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 50px; color: var(--text); text-decoration: none;
+            font-weight: 500; font-size: 0.95rem; transition: all 0.3s ease;
+        }
+        .contact-link:hover { background: rgba(192,57,43,0.12); border-color: var(--accent); transform: translateY(-3px); }
+        .contact-link i { color: var(--accent); font-size: 1.1rem; }
+        .social-links { display: flex; justify-content: center; gap: 16px; }
+        .social-link {
+            width: 46px; height: 46px; border-radius: 50%;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text); text-decoration: none; font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
+
+        footer {
+            background: var(--secondary); padding: 28px 5%; text-align: center;
+            border-top: 1px solid var(--card-border); color: var(--text-muted); font-size: 0.85rem;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-on-scroll { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 1024px) {
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-story { text-align: left; }
+            .hero-cta { justify-content: center; }
+            .pillar-grid { max-width: 500px; margin: 0 auto; }
+            .approach-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%;
+                background: var(--secondary); flex-direction: column; padding: 20px; gap: 18px;
+                border-top: 1px solid var(--card-border);
+            }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2.2rem; }
+            .section-header h2 { font-size: 2rem; }
+            .experience-grid, .projects-grid { grid-template-columns: 1fr; }
+            .contact h2 { font-size: 2.2rem; }
+            .pillar-grid { grid-template-columns: 1fr; }
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <nav id="navbar">
+        <a href="#" class="logo">Manya<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-badge"><i class="fas fa-circle"></i> MBA — IIM Rohtak | Marketing & Communications</span>
+                <h1>Building <span class="highlight">Trust</span>. Driving <span class="highlight">Presence</span>. Delivering <span class="highlight">Impact</span>.</h1>
+                <p class="hero-subtitle">A marketing & communications professional who understands that in high-stakes B2B sectors, brand credibility is built on precision, accountability, and long-term stakeholder relationships.</p>
+                <div class="hero-story">
+                    I didn't drift into marketing — I chose it, deliberately, every summer since college. Then I spent a year at Aditya Birla Capital in a commercial role, defending CAC and ROI in business reviews. That experience gave me what most marketers at my level lack: the ability to craft brand narratives that hold up under boardroom scrutiny. I don't just communicate value. I understand what makes it commercially viable.
+                </div>
+                <div class="hero-cta">
+                    <a href="#experience" class="btn btn-primary"><i class="fas fa-briefcase"></i> View My Work</a>
+                    <a href="#contact" class="btn btn-secondary"><i class="fas fa-envelope"></i> Connect With Me</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="pillar-grid">
+                    <div class="pillar-card">
+                        <div class="pillar-icon"><i class="fas fa-shield-halved"></i></div>
+                        <div class="pillar-title">Brand Building</div>
+                        <div class="pillar-desc">Built institutional brand presence from 0 to 2.4M+ impressions through strategic positioning and sustained narrative.</div>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon"><i class="fas fa-tower-broadcast"></i></div>
+                        <div class="pillar-title">Strategic Communication</div>
+                        <div class="pillar-desc">Crafted board-level proposals and stakeholder communications that influenced ₹11,400+ Cr in commercial decisions.</div>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon"><i class="fas fa-pen-nib"></i></div>
+                        <div class="pillar-title">Content Development</div>
+                        <div class="pillar-desc">Developed multi-platform content ecosystems — from technical video courses to leadership-facing strategic narratives.</div>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon"><i class="fas fa-handshake"></i></div>
+                        <div class="pillar-title">Stakeholder Engagement</div>
+                        <div class="pillar-desc">Managed key B2B accounts, led 15+ member cross-functional teams, and built trusted relationships across vendor and client ecosystems.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="approach" id="approach">
+        <div class="section-header animate-on-scroll">
+            <span class="section-tag">My Approach</span>
+            <h2>Built for <span class="highlight">High-Stakes</span> Environments</h2>
+            <p>Defence & Aerospace marketing demands more than creativity. It demands credibility.</p>
+        </div>
+        <div class="approach-grid">
+            <div class="approach-content animate-on-scroll">
+                <h3>Why I am ready for Defence & Aerospace communications</h3>
+                <p>Marketing in a sector like Defence & Aerospace is fundamentally different from consumer marketing. The audience isn't swayed by trends — they are influenced by <strong>trust, technical credibility, and long-term reputation</strong>. Every piece of communication must signal reliability, national relevance, and institutional strength.</p>
+                <p>My year at Aditya Birla Capital taught me to operate in exactly this mode: <strong>stakeholder-first, metric-backed, and reputation-conscious</strong>. I managed B2B accounts where a single communication could influence a multi-crore decision. I built MIS dashboards that leadership reviewed weekly. I learned that in high-stakes sectors, brand presence isn't built through virality — it's built through <strong>consistent, credible, and strategically timed narrative</strong>.</p>
+                <ul class="approach-list">
+                    <li>I understand how B2B stakeholders evaluate brand credibility before engagement</li>
+                    <li>I have experience building content that serves both technical and leadership audiences</li>
+                    <li>I know how to align brand communication with commercial and strategic objectives</li>
+                    <li>I have managed cross-functional stakeholder relationships under tight accountability</li>
+                    <li>I approach every campaign with the discipline of someone who has defended budgets in boardrooms</li>
+                </ul>
+            </div>
+            <div class="approach-visual animate-on-scroll">
+                <h4>Core Competencies Aligned to the Role</h4>
+                <div class="competency-row">
+                    <span class="competency-label">Brand Building</span>
+                    <div class="competency-bar-bg"><div class="competency-bar-fill" style="width: 92%;"></div></div>
+                    <span class="competency-pct">92%</span>
+                </div>
+                <div class="competency-row">
+                    <span class="competency-label">Strategic Communication</span>
+                    <div class="competency-bar-bg"><div class="competency-bar-fill" style="width: 90%;"></div></div>
+                    <span class="competency-pct">90%</span>
+                </div>
+                <div class="competency-row">
+                    <span class="competency-label">Content Development</span>
+                    <div class="competency-bar-bg"><div class="competency-bar-fill" style="width: 88%;"></div></div>
+                    <span class="competency-pct">88%</span>
+                </div>
+                <div class="competency-row">
+                    <span class="competency-label">Stakeholder Engagement</span>
+                    <div class="competency-bar-bg"><div class="competency-bar-fill" style="width: 90%;"></div></div>
+                    <span class="competency-pct">90%</span>
+                </div>
+                <div class="competency-row">
+                    <span class="competency-label">B2B Commercial Acumen</span>
+                    <div class="competency-bar-bg"><div class="competency-bar-fill" style="width: 85%;"></div></div>
+                    <span class="competency-pct">85%</span>
+                </div>
+                <div class="competency-row">
+                    <span class="competency-label">Crisis & Reputation Management</span>
+                    <div class="competency-bar-bg"><div class="competency-bar-fill" style="width: 80%;"></div></div>
+                    <span class="competency-pct">80%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="section-header animate-on-scroll">
+            <span class="section-tag">My Story</span>
+            <h2>The Marketer Who Speaks <span class="highlight">Boardroom</span></h2>
+            <p>A deliberate journey from creative campaigns to commercial accountability</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-content animate-on-scroll">
+                <h3>Not a detour. A deliberate edge.</h3>
+                <p>Marketing isn't something I drifted into. It's what I've chosen, consistently, since college. Every summer, every semester, every opportunity pointed in the same direction.</p>
+                <p>Then I joined Aditya Birla Capital in a commercial sales and marketing role. What that year gave me is something most candidates at my level simply don't have: I now understand how decisions around <strong>cost, margin, and ROI</strong> are made at the leadership table.</p>
+                <div class="about-quote">
+                    "CAC isn't a dashboard metric to me. It's a number I've defended in business reviews. That experience quietly sharpens everything about how I'd approach budget allocation, stakeholder communication, and campaign accountability in a high-stakes B2B environment."
+                </div>
+                <div class="skills-cloud">
+                    <span class="skill-tag pillar">B2B Brand Strategy</span>
+                    <span class="skill-tag pillar">Strategic Communications</span>
+                    <span class="skill-tag pillar">Stakeholder Engagement</span>
+                    <span class="skill-tag pillar">Content Development</span>
+                    <span class="skill-tag">Corporate Communications</span>
+                    <span class="skill-tag">Reputation Management</span>
+                    <span class="skill-tag">Thought Leadership</span>
+                    <span class="skill-tag">Media Planning</span>
+                    <span class="skill-tag">Campaign Analytics</span>
+                    <span class="skill-tag">CRM</span>
+                    <span class="skill-tag">Cross-functional Leadership</span>
+                    <span class="skill-tag">Market Research</span>
+                    <span class="skill-tag">Account Management</span>
+                    <span class="skill-tag">Digital Marketing</span>
+                </div>
+            </div>
+            <div class="about-visual animate-on-scroll">
+                <div class="experience-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023 — 2025</div>
+                        <div class="timeline-title">MBA, Marketing</div>
+                        <div class="timeline-company">Indian Institute of Management, Rohtak</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025 — Present</div>
+                        <div class="timeline-title">Management Trainee — Sales & Marketing</div>
+                        <div class="timeline-company">Aditya Birla Capital</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024</div>
+                        <div class="timeline-title">Digital Marketing Intern</div>
+                        <div class="timeline-company">Havas Media</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023</div>
+                        <div class="timeline-title">Digital Marketing Intern</div>
+                        <div class="timeline-company">Harman International (JBL)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022</div>
+                        <div class="timeline-title">Marketing Intern</div>
+                        <div class="timeline-company">Benchmark Six Sigma</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020 — 2023</div>
+                        <div class="timeline-title">BBA</div>
+                        <div class="timeline-company">Indian Institute of Management, Rohtak</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience" id="experience">
+        <div class="section-header animate-on-scroll">
+            <span class="section-tag">Professional Journey</span>
+            <h2>Where Strategy Meets <span class="highlight">Accountability</span></h2>
+            <p>From media planning to B2B commercial leadership — every role built a different pillar</p>
+        </div>
+        <div class="experience-grid">
+            <div class="exp-card animate-on-scroll">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-company">Aditya Birla Capital</div>
+                        <div class="exp-role">Management Trainee — Sales & Marketing</div>
+                    </div>
+                    <span class="exp-date">Jun 2025 — Present</span>
+                </div>
+                <ul class="exp-highlights">
+                    <li>Managed key B2B accounts and full opportunity lifecycle, building trusted stakeholder relationships that supported revenue growth</li>
+                    <li>Crafted insight-driven strategic proposals and board-facing business communications for leadership decision-making</li>
+                    <li>Built and managed MIS dashboards tracking TAT, pipeline movement, sanctions, and disbursements for weekly leadership review</li>
+                    <li>Collaborated cross-functionally to deliver client-centric solutions aligned with pricing, CAC, and long-term growth objectives</li>
+                    <li>Contributed to ₹11,400+ Cr in annual disbursements, exceeding the business target of ₹10,000 Cr</li>
+                </ul>
+                <span class="exp-metric"><i class="fas fa-chart-line"></i> ₹11,400+ Cr Annual Disbursements</span>
+            </div>
+
+            <div class="exp-card animate-on-scroll">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-company">Havas Media</div>
+                        <div class="exp-role">Digital Marketing Intern</div>
+                    </div>
+                    <span class="exp-date">Apr 2024 — Jun 2024</span>
+                </div>
+                <ul class="exp-highlights">
+                    <li>Assisted media planners in crafting media strategies and executing digital campaigns for live client briefs</li>
+                    <li>Collaborated with media vendors to gather platform intelligence and conduct competitive positioning scans</li>
+                    <li>Analyzed client and competitor digital presence using Similarweb and Google Trends for strategic narrative development</li>
+                    <li>Evaluated campaign impact on business KPIs — sales, search volume, and brand lift — not just vanity metrics</li>
+                </ul>
+                <span class="exp-metric"><i class="fas fa-bullseye"></i> Connected Spend to Business Outcomes</span>
+            </div>
+
+            <div class="exp-card animate-on-scroll">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-company">Harman International</div>
+                        <div class="exp-role">Digital Marketing Intern (JBL Clan)</div>
+                    </div>
+                    <span class="exp-date">Apr 2023 — Jun 2023</span>
+                </div>
+                <ul class="exp-highlights">
+                    <li>Designed and implemented engagement strategies to grow the JBL Clan community with sustainable, authentic participation</li>
+                    <li>Conducted competitive community analysis to identify best practices and differentiation opportunities</li>
+                    <li>Optimized Facebook group functionality and content strategy through continuous performance analysis</li>
+                    <li>Managed brand-to-community stakeholder interactions, strengthening long-term brand loyalty</li>
+                </ul>
+                <span class="exp-metric"><i class="fas fa-users"></i> Community Growth & Engagement</span>
+            </div>
+
+            <div class="exp-card animate-on-scroll">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-company">Benchmark Six Sigma</div>
+                        <div class="exp-role">Marketing Intern</div>
+                    </div>
+                    <span class="exp-date">May 2022 — Jun 2022</span>
+                </div>
+                <ul class="exp-highlights">
+                    <li>Generated ₹4+ lakhs in revenue in a single month through targeted B2B outreach and stakeholder engagement</li>
+                    <li>Managed end-to-end customer requests for certification products, ensuring seamless client experience</li>
+                    <li>Researched client industries and analyzed decision-maker behavior to develop precision sales strategies</li>
+                    <li>Built marketing collateral and communication assets that directly influenced conversion</li>
+                </ul>
+                <span class="exp-metric"><i class="fas fa-rupee-sign"></i> ₹4L+ Revenue in 1 Month</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS SECTION ===== -->
+    <section class="projects" id="projects">
+        <div class="section-header animate-on-scroll">
+            <span class="section-tag">Sample Work</span>
+            <h2>Projects & <span class="highlight">Strategic Decks</span></h2>
+            <p>Click any project to view the original presentation — preserved in full fidelity.</p>
+        </div>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card animate-on-scroll" onclick="openPDF('diaspora')">
+                <div class="project-image">
+                    <i class="fas fa-music" style="color: #e74c3c; z-index: 1;"></i>
+                    <div class="play-btn"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="project-content">
+                    <span class="project-tag">Cultural Strategy</span>
+                    <h3 class="project-title">The Undiscovered Indian Music</h3>
+                    <p class="project-desc">A diaspora music discovery initiative for Haryanvi music — exploring how an under-explored regional genre could build cultural relevance in global diaspora markets through ecosystem-driven marketing.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF Deck</span>
+                        <span><i class="fas fa-clock"></i> Independent Project</span>
+                        <span><i class="fas fa-globe"></i> Diaspora Markets</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card animate-on-scroll" onclick="openPDF('project2')">
+                <div class="project-image">
+                    <i class="fas fa-rocket" style="color: #d4a017; z-index: 1;"></i>
+                    <div class="play-btn"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="project-content">
+                    <span class="project-tag">Brand Strategy</span>
+                    <h3 class="project-title">Your Second Project</h3>
+                    <p class="project-desc">Upload your second PPT as a PDF to GitHub, rename it to project2.pdf, and this card will open it in full fidelity.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF Deck</span>
+                        <span><i class="fas fa-clock"></i> Your Timeline</span>
+                        <span><i class="fas fa-tag"></i> Your Category</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card animate-on-scroll" onclick="openPDF('project3')">
+                <div class="project-image">
+                    <i class="fas fa-chart-pie" style="color: #a29bfe; z-index: 1;"></i>
+                    <div class="play-btn"><i class="fas fa-eye"></i></div>
+                </div>
+                <div class="project-content">
+                    <span class="project-tag">Market Analysis</span>
+                    <h3 class="project-title">Your Third Project</h3>
+                    <p class="project-desc">Same process — export as PDF, upload as project3.pdf, and the card opens your original-designed deck inside the portfolio.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF Deck</span>
+                        <span><i class="fas fa-clock"></i> Your Timeline</span>
+                        <span><i class="fas fa-tag"></i> Your Category</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PDF MODAL ===== -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-header">
+            <div class="pdf-header-title" id="pdfTitle"><i class="fas fa-file-pdf" style="color: var(--accent); margin-right: 10px;"></i> Viewing Presentation</div>
+            <div class="pdf-header-actions">
+                <a href="#" class="ppt-btn" id="pdfDownload" target="_blank" download><i class="fas fa-download"></i> Download PDF</a>
+                <button class="ppt-btn" onclick="closePDF()"><i class="fas fa-times"></i> Close</button>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <iframe id="pdfFrame" src="" frameborder="0"></iframe>
+        </div>
+        <div class="pdf-footer">
+            <span style="color: var(--text-muted); font-size: 0.85rem;">Use the PDF viewer toolbar to zoom, navigate pages, and download</span>
+        </div>
+    </div>
+
+    <section class="achievements" id="achievements">
+        <div class="section-header animate-on-scroll">
+            <span class="section-tag">Recognition</span>
+            <h2>Awards & <span class="highlight">Competitions</span></h2>
+            <p>Validated by results, recognized by peers</p>
+        </div>
+        <div class="achievements-grid">
+            <div class="achievement-card animate-on-scroll">
+                <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
+                <div class="achievement-title">1st Position</div>
+                <div class="achievement-detail">'Phantom' Advertising Competition<br>Aryabhatta College, DU — 2021</div>
+            </div>
+            <div class="achievement-card animate-on-scroll">
+                <div class="achievement-icon"><i class="fas fa-medal"></i></div>
+                <div class="achievement-title">3rd Position</div>
+                <div class="achievement-detail">Business Plan Competition<br>Shaheed Bhagat Singh College, DU — 2022</div>
+            </div>
+            <div class="achievement-card animate-on-scroll">
+                <div class="achievement-icon"><i class="fas fa-star"></i></div>
+                <div class="achievement-title">Out of the Box Thinker</div>
+                <div class="achievement-detail">Case Competition Award<br>IFMR Krea University — 2022</div>
+            </div>
+            <div class="achievement-card animate-on-scroll">
+                <div class="achievement-icon"><i class="fas fa-award"></i></div>
+                <div class="achievement-title">Top 10 Finalist</div>
+                <div class="achievement-detail">Annual Business Plan Competition<br>NIT Durgapur — 2021</div>
+            </div>
+            <div class="achievement-card animate-on-scroll">
+                <div class="achievement-icon"><i class="fas fa-music"></i></div>
+                <div class="achievement-title">Senior Diploma</div>
+                <div class="achievement-detail">Kathak Dance<br>Prayag Sangeet Samiti — 2011</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-content animate-on-scroll">
+            <span class="section-tag">Let's Connect</span>
+            <h2>Ready to Strengthen <span class="highlight">Brand Presence</span> Together?</h2>
+            <p>I am actively seeking a Marketing & Communications role where I can bring strategic brand building, content development, and stakeholder engagement to a mission-driven organization.</p>
+            <div class="contact-links">
+                <a href="mailto:ipm02manyag@iimrohtak.ac.in" class="contact-link"><i class="fas fa-envelope"></i> ipm02manyag@iimrohtak.ac.in</a>
+                <a href="tel:+919811298385" class="contact-link"><i class="fas fa-phone"></i> +91 98112 98385</a>
+            </div>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/manya-gupta" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Manya Gupta. Crafted with purpose. Built for impact.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        mobileMenuBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+        // Navbar Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Active Nav Link
+        const sections = document.querySelectorAll('section[id]');
+        const navItems = document.querySelectorAll('.nav-links a');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (scrollY >= section.offsetTop - 200) current = section.getAttribute('id');
+            });
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + current) item.classList.add('active');
+            });
+        });
+
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); navLinks.classList.remove('active'); }
+            });
+        });
+
+        // ===== PDF MODAL =====
+        const pdfFiles = {
+            diaspora: { file: 'diaspora.pdf', title: 'The Undiscovered Indian Music — Diaspora Strategy Deck' },
+            project2: { file: 'project2.pdf', title: 'Project 2 — Add Your Title' },
+            project3: { file: 'project3.pdf', title: 'Project 3 — Add Your Title' }
+        };
+
+        function openPDF(projectId) {
+            console.log('Opening PDF:', projectId);
+            const data = pdfFiles[projectId];
+            if (!data) {
+                console.error('PDF not found for:', projectId);
+                return;
+            }
+
+            const modal = document.getElementById('pdfModal');
+            const frame = document.getElementById('pdfFrame');
+            const title = document.getElementById('pdfTitle');
+            const download = document.getElementById('pdfDownload');
+
+            if (!modal || !frame || !title || !download) {
+                console.error('Modal elements not found');
+                return;
+            }
+
+            frame.src = data.file;
+            title.innerHTML = '<i class="fas fa-file-pdf" style="color: var(--accent); margin-right: 10px;"></i> ' + data.title;
+            download.href = data.file;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            console.log('Modal opened for:', data.file);
+        }
+
+        function closePDF() {
+            const modal = document.getElementById('pdfModal');
+            const frame = document.getElementById('pdfFrame');
+            if (frame) frame.src = '';
+            if (modal) modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePDF();
+        });
+
+        document.getElementById('pdfModal').addEventListener('click', (e) => {
+            if (e.target.id === 'pdfModal') closePDF();
+        });
+    </script>
+</body>
+</html>
