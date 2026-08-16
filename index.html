@@ -13,13 +13,11 @@
             --accent: #c0392b;
             --accent-light: #e74c3c;
             --gold: #d4a017;
-            --steel: #7f8c8d;
             --text: #f1f1f1;
             --text-muted: #95a5a6;
             --card-bg: rgba(255,255,255,0.025);
             --card-border: rgba(255,255,255,0.06);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
@@ -29,11 +27,8 @@
             overflow-x: hidden;
             line-height: 1.65;
         }
-
-        /* Background */
         .bg-animation {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; overflow: hidden;
         }
         .bg-animation::before {
@@ -57,8 +52,6 @@
             33% { transform: translate(30px,-30px) scale(1.1); }
             66% { transform: translate(-20px,20px) scale(0.9); }
         }
-
-        /* Nav */
         nav {
             position: fixed; top: 0; width: 100%;
             padding: 18px 5%;
@@ -89,7 +82,6 @@
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
         .mobile-menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; cursor: pointer; }
 
-        /* Hero */
         .hero {
             min-height: 100vh; display: flex; align-items: center;
             padding: 130px 5% 80px; position: relative;
@@ -170,7 +162,6 @@
         .pillar-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
         .pillar-desc { color: var(--text-muted); font-size: 0.82rem; line-height: 1.55; }
 
-        /* Sections */
         section { padding: 100px 5%; position: relative; }
         .section-header { text-align: center; margin-bottom: 55px; }
         .section-tag {
@@ -185,7 +176,6 @@
         }
         .section-header p { color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin: 0 auto; line-height: 1.7; }
 
-        /* Approach Section - NEW */
         .approach { background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%); }
         .approach-grid {
             max-width: 1100px; margin: 0 auto;
@@ -227,7 +217,6 @@
         .competency-label { font-size: 0.85rem; color: var(--text-muted); min-width: 140px; }
         .competency-pct { font-size: 0.8rem; color: var(--gold); font-weight: 600; min-width: 40px; text-align: right; }
 
-        /* About */
         .about { background: var(--secondary); }
         .about-grid {
             max-width: 1200px; margin: 0 auto;
@@ -266,7 +255,6 @@
         .timeline-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
         .timeline-company { color: var(--text-muted); font-size: 0.9rem; }
 
-        /* Experience */
         .experience { background: var(--primary); }
         .experience-grid {
             max-width: 1200px; margin: 0 auto;
@@ -309,41 +297,254 @@
             border-radius: 8px; color: var(--gold); font-weight: 600; font-size: 0.85rem;
         }
 
-        /* Projects */
+        /* ===== PROJECTS SECTION ===== */
         .projects { background: linear-gradient(180deg, var(--secondary) 0%, var(--primary) 100%); }
         .projects-grid {
             max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px;
         }
         .project-card {
             background: var(--card-bg); border: 1px solid var(--card-border);
             border-radius: 18px; overflow: hidden; transition: all 0.4s ease;
+            cursor: pointer; position: relative;
         }
-        .project-card:hover { transform: translateY(-6px); box-shadow: 0 22px 45px rgba(0,0,0,0.3); }
-        .project-image {
-            height: 180px; background: linear-gradient(135deg, var(--secondary), var(--primary));
+        .project-card:hover {
+            transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+            border-color: rgba(192,57,43,0.25);
+        }
+        .project-card .project-image {
+            height: 200px; background: linear-gradient(135deg, #1a1a3e, #0f0f2d);
             display: flex; align-items: center; justify-content: center;
-            font-size: 2.5rem; position: relative; overflow: hidden;
+            font-size: 2.8rem; position: relative; overflow: hidden;
         }
-        .project-image::after {
+        .project-card .project-image::after {
             content: ''; position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
-            background: linear-gradient(180deg, transparent 0%, rgba(7,7,20,0.85) 100%);
+            background: linear-gradient(180deg, transparent 0%, rgba(7,7,20,0.9) 100%);
         }
-        .project-content { padding: 26px; }
+        .project-card .project-image .play-btn {
+            position: absolute; z-index: 2;
+            width: 56px; height: 56px; border-radius: 50%;
+            background: rgba(192,57,43,0.9); border: 2px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.2rem;
+            box-shadow: 0 8px 25px rgba(192,57,43,0.4);
+            transition: all 0.3s ease;
+        }
+        .project-card:hover .project-image .play-btn {
+            transform: scale(1.1); background: var(--accent);
+        }
+        .project-card .project-content { padding: 26px; }
         .project-tag {
             display: inline-block; padding: 4px 12px;
             background: rgba(192,57,43,0.1); border-radius: 20px;
             color: var(--accent-light); font-size: 0.75rem; font-weight: 600; margin-bottom: 12px;
         }
-        .project-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
-        .project-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 16px; }
-        .project-metric {
-            display: flex; align-items: center; gap: 8px;
-            color: var(--gold); font-weight: 600; font-size: 1rem;
+        .project-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+        .project-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 18px; }
+        .project-meta {
+            display: flex; align-items: center; gap: 15px;
+            color: var(--text-muted); font-size: 0.8rem;
+        }
+        .project-meta span { display: flex; align-items: center; gap: 5px; }
+        .project-meta i { color: var(--accent); font-size: 0.85rem; }
+
+        /* ===== PPT MODAL / SLIDE DECK ===== */
+        .ppt-modal {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; z-index: 9999;
+            background: rgba(0,0,0,0.92); backdrop-filter: blur(10px);
+        }
+        .ppt-modal.active { display: flex; flex-direction: column; }
+
+        .ppt-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 24px; background: var(--secondary);
+            border-bottom: 1px solid var(--card-border);
+        }
+        .ppt-header-title {
+            font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text);
+        }
+        .ppt-header-actions { display: flex; gap: 12px; align-items: center; }
+        .ppt-btn {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            color: var(--text); padding: 8px 16px; border-radius: 8px;
+            cursor: pointer; font-size: 0.85rem; font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease; display: flex; align-items: center; gap: 6px;
+        }
+        .ppt-btn:hover { background: rgba(192,57,43,0.2); border-color: var(--accent); }
+        .ppt-close {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            color: var(--text); display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 1.1rem; transition: all 0.2s ease;
+        }
+        .ppt-close:hover { background: var(--accent); border-color: var(--accent); }
+
+        .ppt-progress {
+            height: 3px; background: rgba(255,255,255,0.05);
+        }
+        .ppt-progress-fill {
+            height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold));
+            transition: width 0.4s ease;
         }
 
-        /* Achievements */
+        .ppt-body {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            padding: 30px; position: relative; overflow: hidden;
+        }
+
+        .ppt-slide-container {
+            width: 100%; max-width: 1000px; aspect-ratio: 16/9;
+            background: var(--secondary); border-radius: 16px;
+            border: 1px solid var(--card-border); overflow: hidden;
+            position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .ppt-slide {
+            display: none; width: 100%; height: 100%;
+            padding: 50px 60px; overflow-y: auto;
+            animation: slideIn 0.4s ease;
+        }
+        .ppt-slide.active { display: block; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .ppt-slide h2 {
+            font-family: 'Playfair Display', serif; font-size: 2.2rem;
+            margin-bottom: 24px; line-height: 1.2;
+            background: linear-gradient(135deg, var(--text), var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .ppt-slide h3 {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            color: var(--accent-light); margin-bottom: 16px; margin-top: 28px;
+        }
+        .ppt-slide p {
+            color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; margin-bottom: 16px;
+        }
+        .ppt-slide ul {
+            list-style: none; margin: 16px 0;
+        }
+        .ppt-slide ul li {
+            padding: 8px 0; padding-left: 24px; position: relative;
+            color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;
+        }
+        .ppt-slide ul li::before {
+            content: '▸'; position: absolute; left: 0; color: var(--accent);
+        }
+        .ppt-slide .slide-number {
+            position: absolute; bottom: 20px; right: 30px;
+            color: var(--text-muted); font-size: 0.8rem; opacity: 0.5;
+        }
+        .ppt-slide .big-stat {
+            font-family: 'Playfair Display', serif; font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin: 20px 0;
+        }
+        .ppt-slide .two-col {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px;
+        }
+        .ppt-slide .highlight-box {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 12px; padding: 20px; margin: 16px 0;
+        }
+        .ppt-slide .highlight-box h4 {
+            color: var(--gold); font-size: 0.9rem; text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 8px;
+        }
+        .ppt-slide .highlight-box p { margin: 0; font-size: 0.95rem; }
+        .ppt-slide .quote-block {
+            border-left: 3px solid var(--accent); padding-left: 20px;
+            margin: 24px 0; font-style: italic; color: var(--text); font-size: 1.1rem;
+        }
+        .ppt-slide .tag-grid {
+            display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0;
+        }
+        .ppt-slide .tag-grid span {
+            padding: 8px 16px; background: rgba(192,57,43,0.1);
+            border: 1px solid rgba(192,57,43,0.2); border-radius: 20px;
+            color: var(--accent-light); font-size: 0.85rem;
+        }
+        .ppt-slide .comparison-table {
+            width: 100%; border-collapse: collapse; margin: 20px 0;
+        }
+        .ppt-slide .comparison-table th,
+        .ppt-slide .comparison-table td {
+            padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--card-border);
+            font-size: 0.9rem;
+        }
+        .ppt-slide .comparison-table th {
+            color: var(--gold); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;
+        }
+        .ppt-slide .comparison-table td { color: var(--text-muted); }
+        .ppt-slide .comparison-table td:first-child { color: var(--text); font-weight: 500; }
+        .ppt-slide .route-box {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 12px; padding: 24px; margin: 16px 0;
+            position: relative;
+        }
+        .ppt-slide .route-box.chosen { border-color: var(--accent); background: rgba(192,57,43,0.05); }
+        .ppt-slide .route-box .route-label {
+            position: absolute; top: -10px; left: 20px;
+            background: var(--secondary); padding: 2px 10px;
+            color: var(--accent-light); font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase;
+        }
+        .ppt-slide .journey-flow {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 16px; margin: 30px 0;
+        }
+        .ppt-slide .journey-step {
+            flex: 1; text-align: center; padding: 20px 16px;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 12px;
+        }
+        .ppt-slide .journey-step .step-num {
+            font-family: 'Playfair Display', serif; font-size: 1.8rem;
+            color: var(--accent); margin-bottom: 8px;
+        }
+        .ppt-slide .journey-step .step-title {
+            font-weight: 600; color: var(--text); margin-bottom: 6px;
+        }
+        .ppt-slide .journey-step .step-desc {
+            font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;
+        }
+        .ppt-slide .journey-arrow {
+            color: var(--accent); font-size: 1.2rem;
+        }
+        .ppt-slide .audience-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 12px; padding: 20px; margin: 12px 0;
+        }
+        .ppt-slide .audience-card .audience-num {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--accent);
+            margin-bottom: 6px;
+        }
+        .ppt-slide .audience-card .audience-title {
+            font-weight: 600; color: var(--text); margin-bottom: 4px;
+        }
+        .ppt-slide .audience-card .audience-sub {
+            color: var(--text-muted); font-size: 0.85rem; margin-bottom: 10px;
+        }
+        .ppt-slide .audience-card .audience-quote {
+            font-style: italic; color: var(--text-muted); font-size: 0.9rem;
+            border-left: 2px solid var(--accent); padding-left: 12px;
+        }
+
+        .ppt-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 24px; background: var(--secondary);
+            border-top: 1px solid var(--card-border);
+        }
+        .ppt-nav { display: flex; gap: 12px; align-items: center; }
+        .ppt-slide-counter {
+            color: var(--text-muted); font-size: 0.85rem; min-width: 60px; text-align: center;
+        }
+
         .achievements { background: var(--primary); }
         .achievements-grid {
             max-width: 1000px; margin: 0 auto;
@@ -358,7 +559,6 @@
         .achievement-title { font-weight: 600; margin-bottom: 6px; font-size: 1rem; }
         .achievement-detail { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; }
 
-        /* Contact */
         .contact { background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%); text-align: center; }
         .contact-content { max-width: 680px; margin: 0 auto; }
         .contact h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 18px; }
@@ -402,6 +602,11 @@
             .pillar-grid { max-width: 500px; margin: 0 auto; }
             .approach-grid { grid-template-columns: 1fr; }
             .about-grid { grid-template-columns: 1fr; }
+            .ppt-slide-container { aspect-ratio: auto; min-height: 70vh; }
+            .ppt-slide { padding: 30px; }
+            .ppt-slide .two-col { grid-template-columns: 1fr; }
+            .ppt-slide .journey-flow { flex-direction: column; }
+            .ppt-slide .journey-arrow { transform: rotate(90deg); }
         }
         @media (max-width: 768px) {
             .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%;
@@ -415,11 +620,62 @@
             .experience-grid, .projects-grid { grid-template-columns: 1fr; }
             .contact h2 { font-size: 2.2rem; }
             .pillar-grid { grid-template-columns: 1fr; }
+            .ppt-slide h2 { font-size: 1.6rem; }
+            .ppt-slide .big-stat { font-size: 2.5rem; }
         }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--primary); }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
-    </style>
+    
+        /* ===== PDF MODAL ===== */
+        .pdf-modal {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; z-index: 9999;
+            background: rgba(0,0,0,0.92); backdrop-filter: blur(10px);
+            flex-direction: column;
+        }
+        .pdf-modal.active { display: flex; }
+
+        .pdf-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 24px; background: var(--secondary);
+            border-bottom: 1px solid var(--card-border);
+            flex-shrink: 0;
+        }
+        .pdf-header-title {
+            font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text);
+        }
+        .pdf-header-actions { display: flex; gap: 12px; align-items: center; }
+
+        .pdf-body {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            padding: 20px; position: relative; overflow: hidden;
+        }
+        .pdf-body iframe {
+            width: 100%; height: 100%;
+            max-width: 1100px;
+            background: var(--secondary);
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .pdf-footer {
+            display: flex; justify-content: center; align-items: center;
+            padding: 12px 24px; background: var(--secondary);
+            border-top: 1px solid var(--card-border);
+            flex-shrink: 0;
+        }
+
+        .ppt-btn {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            color: var(--text); padding: 8px 16px; border-radius: 8px;
+            cursor: pointer; font-size: 0.85rem; font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px;
+            text-decoration: none;
+        }
+        .ppt-btn:hover { background: rgba(192,57,43,0.2); border-color: var(--accent); }
+</style>
 <base target="_blank">
 </head>
 <body>
@@ -438,7 +694,6 @@
         <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
     </nav>
 
-    <!-- Hero -->
     <section class="hero" id="home">
         <div class="hero-container">
             <div class="hero-content">
@@ -480,7 +735,6 @@
         </div>
     </section>
 
-    <!-- Approach Section -->
     <section class="approach" id="approach">
         <div class="section-header animate-on-scroll">
             <span class="section-tag">My Approach</span>
@@ -536,7 +790,6 @@
         </div>
     </section>
 
-    <!-- About -->
     <section class="about" id="about">
         <div class="section-header animate-on-scroll">
             <span class="section-tag">My Story</span>
@@ -577,7 +830,7 @@
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2025 — Present</div>
-                        <div class="timeline-title">Senior Business Analyst</div>
+                        <div class="timeline-title">Management Trainee — Sales & Marketing</div>
                         <div class="timeline-company">Aditya Birla Capital</div>
                     </div>
                     <div class="timeline-item">
@@ -605,7 +858,6 @@
         </div>
     </section>
 
-    <!-- Experience -->
     <section class="experience" id="experience">
         <div class="section-header animate-on-scroll">
             <span class="section-tag">Professional Journey</span>
@@ -617,7 +869,7 @@
                 <div class="exp-header">
                     <div>
                         <div class="exp-company">Aditya Birla Capital</div>
-                        <div class="exp-role">Senior Business Analyst</div>
+                        <div class="exp-role">Management Trainee — Sales & Marketing</div>
                     </div>
                     <span class="exp-date">Jun 2025 — Present</span>
                 </div>
@@ -684,54 +936,88 @@
         </div>
     </section>
 
-    <!-- Projects -->
+    
+    <!-- ===== PROJECTS SECTION WITH PDF VIEWER ===== -->
     <section class="projects" id="projects">
         <div class="section-header animate-on-scroll">
-            <span class="section-tag">Impact Projects</span>
-            <h2>Campaigns That <span class="highlight">Built Presence</span></h2>
-            <p>Real work. Real numbers. Real stakeholder impact.</p>
+            <span class="section-tag">Sample Work</span>
+            <h2>Projects & <span class="highlight">Strategic Decks</span></h2>
+            <p>Click any project to view the original presentation — preserved in full fidelity.</p>
         </div>
         <div class="projects-grid">
-            <div class="project-card animate-on-scroll">
-                <div class="project-image"><i class="fab fa-youtube" style="color: #ff6b6b;"></i></div>
+            <!-- Project 1: Diaspora Music -->
+            <div class="project-card animate-on-scroll" onclick="openPDF('diaspora')">
+                <div class="project-image">
+                    <i class="fas fa-music" style="color: #e74c3c; z-index: 1;"></i>
+                    <div class="play-btn"><i class="fas fa-eye"></i></div>
+                </div>
                 <div class="project-content">
-                    <span class="project-tag">Content & Growth</span>
-                    <h3 class="project-title">UniVoyage — Content Ecosystem</h3>
-                    <p class="project-desc">Built a full content ecosystem across YouTube, Instagram, and web. Developed a structured digital course with video lectures and assignments for 200 students. Conducted regular webinars for audience acquisition and engagement.</p>
-                    <div class="project-metric"><i class="fas fa-arrow-up"></i> 350% Subscriber Growth (2K → 9K)</div>
+                    <span class="project-tag">Cultural Strategy</span>
+                    <h3 class="project-title">The Undiscovered Indian Music</h3>
+                    <p class="project-desc">A diaspora music discovery initiative for Haryanvi music — exploring how an under-explored regional genre could build cultural relevance in global diaspora markets through ecosystem-driven marketing.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF Deck</span>
+                        <span><i class="fas fa-clock"></i> Independent Project</span>
+                        <span><i class="fas fa-globe"></i> Diaspora Markets</span>
+                    </div>
                 </div>
             </div>
-            <div class="project-card animate-on-scroll">
-                <div class="project-image"><i class="fas fa-bullhorn" style="color: #d4a017;"></i></div>
+
+            <!-- Project 2: Placeholder -->
+            <div class="project-card animate-on-scroll" onclick="openPDF('project2')">
+                <div class="project-image">
+                    <i class="fas fa-rocket" style="color: #d4a017; z-index: 1;"></i>
+                    <div class="play-btn"><i class="fas fa-eye"></i></div>
+                </div>
                 <div class="project-content">
-                    <span class="project-tag">Brand & Events</span>
-                    <h3 class="project-title">IIM Rohtak Marketing Club</h3>
-                    <p class="project-desc">As Head of External Relations, orchestrated 15+ national marketing events. Secured 15+ live industry projects and organized 10+ knowledge sessions. Created sustained social media content that built institutional brand authority.</p>
-                    <div class="project-metric"><i class="fas fa-eye"></i> 2.4M+ Impressions Generated</div>
+                    <span class="project-tag">Brand Strategy</span>
+                    <h3 class="project-title">Your Second Project</h3>
+                    <p class="project-desc">Upload your second PPT as a PDF to GitHub, rename it to match, and this card will open it in full fidelity.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF Deck</span>
+                        <span><i class="fas fa-clock"></i> Your Timeline</span>
+                        <span><i class="fas fa-tag"></i> Your Category</span>
+                    </div>
                 </div>
             </div>
-            <div class="project-card animate-on-scroll">
-                <div class="project-image"><i class="fas fa-user-tie" style="color: #c0392b;"></i></div>
-                <div class="project-content">
-                    <span class="project-tag">Personal Branding</span>
-                    <h3 class="project-title">Metvy — Strategic Branding</h3>
-                    <p class="project-desc">Led a 15+ member team to develop and execute brand engagement strategies across LinkedIn, Quora, and Medium. Increased brand awareness through strategic media collaborations and consistent thought leadership content.</p>
-                    <div class="project-metric"><i class="fas fa-users"></i> Led 15+ Member Cross-functional Team</div>
+
+            <!-- Project 3: Placeholder -->
+            <div class="project-card animate-on-scroll" onclick="openPDF('project3')">
+                <div class="project-image">
+                    <i class="fas fa-chart-pie" style="color: #a29bfe; z-index: 1;"></i>
+                    <div class="play-btn"><i class="fas fa-eye"></i></div>
                 </div>
-            </div>
-            <div class="project-card animate-on-scroll">
-                <div class="project-image"><i class="fas fa-graduation-cap" style="color: #a29bfe;"></i></div>
                 <div class="project-content">
-                    <span class="project-tag">Research</span>
-                    <h3 class="project-title">Personal Branding & Career Development</h3>
-                    <p class="project-desc">Academic research studying how personal branding influences confidence, communication, and self-awareness. Demonstrated how strategic self-positioning shapes stakeholder perception and career trajectory.</p>
-                    <div class="project-metric"><i class="fas fa-search"></i> IIM Rohtak Research Project</div>
+                    <span class="project-tag">Market Analysis</span>
+                    <h3 class="project-title">Your Third Project</h3>
+                    <p class="project-desc">Same process — export as PDF, upload to GitHub, and the card opens your original-designed deck inside the portfolio.</p>
+                    <div class="project-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF Deck</span>
+                        <span><i class="fas fa-clock"></i> Your Timeline</span>
+                        <span><i class="fas fa-tag"></i> Your Category</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Achievements -->
+    <!-- ===== PDF MODAL ===== -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-header">
+            <div class="pdf-header-title" id="pdfTitle"><i class="fas fa-file-pdf" style="color: var(--accent); margin-right: 10px;"></i> Viewing Presentation</div>
+            <div class="pdf-header-actions">
+                <a href="#" class="ppt-btn" id="pdfDownload" target="_blank"><i class="fas fa-download"></i> Download PDF</a>
+                <button class="ppt-btn" onclick="closePDF()"><i class="fas fa-times"></i> Close</button>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <iframe id="pdfFrame" src="" frameborder="0"></iframe>
+        </div>
+        <div class="pdf-footer">
+            <span style="color: var(--text-muted); font-size: 0.85rem;">Use the PDF viewer toolbar to zoom, navigate pages, and download</span>
+        </div>
+    </div>
+
     <section class="achievements" id="achievements">
         <div class="section-header animate-on-scroll">
             <span class="section-tag">Recognition</span>
@@ -767,7 +1053,6 @@
         </div>
     </section>
 
-    <!-- Contact -->
     <section class="contact" id="contact">
         <div class="contact-content animate-on-scroll">
             <span class="section-tag">Let's Connect</span>
@@ -778,7 +1063,7 @@
                 <a href="tel:+919811298385" class="contact-link"><i class="fas fa-phone"></i> +91 98112 98385</a>
             </div>
             <div class="social-links">
-                <a href="https://linkedin.com/in/manya-gupta-3b12811a6" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://linkedin.com/in/manya-gupta" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
@@ -789,15 +1074,18 @@
     </footer>
 
     <script>
+        // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
         mobileMenuBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
 
+        // Navbar Scroll
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
+        // Active Nav Link
         const sections = document.querySelectorAll('section[id]');
         const navItems = document.querySelectorAll('.nav-links a');
         window.addEventListener('scroll', () => {
@@ -811,6 +1099,7 @@
             });
         });
 
+        // Scroll Animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -818,12 +1107,55 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); navLinks.classList.remove('active'); }
             });
+        });
+
+        // ===== PDF MODAL SYSTEM =====
+        const pdfFiles = {
+            diaspora: { file: 'diaspora.pdf', title: 'The Undiscovered Indian Music — Diaspora Strategy Deck' },
+            project2: { file: 'project2.pdf', title: 'Project 2 — Add Your Title' },
+            project3: { file: 'project3.pdf', title: 'Project 3 — Add Your Title' }
+        };
+
+        function openPDF(projectId) {
+            const data = pdfFiles[projectId];
+            if (!data) return;
+
+            const modal = document.getElementById('pdfModal');
+            const frame = document.getElementById('pdfFrame');
+            const title = document.getElementById('pdfTitle');
+            const download = document.getElementById('pdfDownload');
+
+            frame.src = data.file;
+            title.innerHTML = '<i class="fas fa-file-pdf" style="color: var(--accent); margin-right: 10px;"></i> ' + data.title;
+            download.href = data.file;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePDF() {
+            const modal = document.getElementById('pdfModal');
+            const frame = document.getElementById('pdfFrame');
+            frame.src = '';
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePDF();
+        });
+
+        // Close on backdrop click
+        document.getElementById('pdfModal').addEventListener('click', (e) => {
+            if (e.target.id === 'pdfModal') closePDF();
         });
     </script>
 </body>
