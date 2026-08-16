@@ -499,6 +499,12 @@
             .experience-grid, .projects-grid { grid-template-columns: 1fr; }
             .contact h2 { font-size: 2.2rem; }
             .pillar-grid { grid-template-columns: 1fr; }
+            .pdf-header { flex-direction: column; gap: 12px; padding: 12px 16px; }
+            .pdf-header-title { font-size: 0.95rem; text-align: center; }
+            .pdf-header-actions { width: 100%; justify-content: center; }
+            .pdf-body { padding: 10px; }
+            .pdf-body iframe { border-radius: 8px; }
+            .ppt-btn { padding: 6px 12px; font-size: 0.8rem; }
         }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--primary); }
@@ -532,7 +538,8 @@
                     I didn't drift into marketing — I chose it, deliberately, every summer since college. Then I spent a year at Aditya Birla Capital in a commercial role, defending CAC and ROI in business reviews. That experience gave me what most marketers at my level lack: the ability to craft brand narratives that hold up under boardroom scrutiny. I don't just communicate value. I understand what makes it commercially viable.
                 </div>
                 <div class="hero-cta">
-                    <a href="#experience" class="btn btn-primary"><i class="fas fa-briefcase"></i> View My Work</a>
+                    <a href="#experience" class="btn btn-primary"><i class="fas fa-briefcase"></i> Professional Experience</a>
+                    <a href="#projects" class="btn btn-secondary"><i class="fas fa-lightbulb"></i> Passion Project</a>
                     <a href="#contact" class="btn btn-secondary"><i class="fas fa-envelope"></i> Connect With Me</a>
                 </div>
             </div>
@@ -808,23 +815,7 @@
                 </div>
             </div>
 
-            <!-- Project 3 -->
-            <div class="project-card animate-on-scroll" onclick="openPDF('project3')">
-                <div class="project-image">
-                    <i class="fas fa-chart-pie" style="color: #a29bfe; z-index: 1;"></i>
-                    <div class="play-btn"><i class="fas fa-eye"></i></div>
-                </div>
-                <div class="project-content">
-                    <span class="project-tag">Market Analysis</span>
-                    <h3 class="project-title">Your Third Project</h3>
-                    <p class="project-desc">Same process — export as PDF, upload as project3.pdf, and the card opens your original-designed deck inside the portfolio.</p>
-                    <div class="project-meta">
-                        <span><i class="fas fa-file-pdf"></i> PDF Deck</span>
-                        <span><i class="fas fa-clock"></i> Your Timeline</span>
-                        <span><i class="fas fa-tag"></i> Your Category</span>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -946,8 +937,7 @@
         // ===== PDF MODAL =====
         const pdfFiles = {
             diaspora: { file: 'diaspora.pdf', title: 'The Undiscovered Indian Music — Diaspora Strategy Deck' },
-            project2: { file: 'project2.pdf', title: 'Project 2 — Add Your Title' },
-            project3: { file: 'project3.pdf', title: 'Project 3 — Add Your Title' }
+            project2: { file: 'project2.pdf', title: 'Project 2 — Add Your Title' }
         };
 
         function openPDF(projectId) {
